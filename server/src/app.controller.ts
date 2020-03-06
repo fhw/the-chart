@@ -1,5 +1,6 @@
 import { Controller, Get, Render } from '@nestjs/common';
 import { AppService } from './app.service';
+import {EventsGateway} from './events/events.gateway'
 
 @Controller()
 export class AppController {
@@ -8,6 +9,8 @@ export class AppController {
   @Get()
   @Render('index')
   root() {
+    const io = new EventsGateway()
+    io.findAll('hhh')
     return {message: 'hello world!'};
   }
 }
